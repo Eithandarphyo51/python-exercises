@@ -2,22 +2,22 @@ import random
 from urllib.request import urlopen
 import sys 
 
-WORD_URL = "http://learncodethehardway.org/words.txt"
-WORD = []
+WORD_URL = "http://learncodethehardway.org/words.           txt"
+WORDS = []
 
 PHRASES = {
         "class %%%(%%%):":
         "Make a class named %%% that is-a %%%",
-        "class %%%(object):\n\tdef __init__(self, ***)" :
-          "class %%% has-a __init__ that takes self and *** params.",
-        "class %%%(object):\n\tdef ***(self, @@@)":
-           "class %%% has-a function *** that takes self and @@@ params.",
+        "class %%%(object):\n\tdef __init__(self,           ***)" :
+          "class %%% has-a __init__ that takes se           lf and *** params.",
+        "class %%%(object):\n\tdef ***(self, @@@)           ":
+           "class %%% has-a function *** that tak               es self and @@@ params.",
         "*** = %%%()":
           "Set *** to an instance of class %%%.",
         "***.***(@@@)":
-          "From *** get the *** function, call it with params self, @@@.",
+          "From *** get the *** function, call it           with params self, @@@.",
           "***.*** ='***'":
-           "From *** get the *** attribute and set it to '***'."
+           "From *** get the *** attribute and se           t it to '***'."
     }
 
 if len(sys.argv) == 2 and sys.argv[1] == "english":
@@ -26,12 +26,14 @@ else:
         PHRASE_FIRST = False
 
 for word in urlopen(WORD_URL).readlines():
-    WORDS.appends(str(word.strip(), encoding="utf-8"))
+    WORDS.append(str(word.strip(), encoding="utf-       8"))
+
 
 def convert(snippet, phrase):
-    class_name = [w.capitalize() for w in random.sample(WORDS, snippet.count("%%     %"))]
-    other_name = random.sample(WORDS, snippet.count("***"))
-    result = []
+    class_names = [w.capitalize() for w in random.                 sample(WORDS, snippet.count("%%                   %"))]
+    other_names = random.sample(WORDS, 
+                  snippet.count("***"))
+    results = []
     param_names = []
 
     for i in range(0, snippet.count("@@@")):
@@ -43,7 +45,7 @@ def convert(snippet, phrase):
         result = sentence[:]
     
         for word in class_names:
-            result = result.replaced("%%%", word, 1)
+            result = result.replace("%%%", word, 1)
 
         for word in other_names:
             result = result.replace("***", word, 1)
@@ -51,7 +53,7 @@ def convert(snippet, phrase):
         for word in param_names:
             result = result.replace("@@@", word, 1)
 
-        result.append(result)
+        results.append(result)
 
     return results
 

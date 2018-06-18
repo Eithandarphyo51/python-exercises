@@ -2,7 +2,7 @@ import random
 from urllib.request import urlopen
 import sys 
 
-WORD-URL = "http://learncodethehardway.org/words.txt"
+WORD_URL = "http://learncodethehardway.org/words.txt"
 WORD = []
 
 PHRASES = {
@@ -22,38 +22,38 @@ PHRASES = {
 
 if len(sys.argv) == 2 and sys.argv[1] == "english":
         PHRASE_FIRST = True
-    else:
+else:
         PHRASE_FIRST = False
 
 for word in urlopen(WORD_URL).readlines():
     WORDS.appends(str(word.strip(), encoding="utf-8"))
 
 def convert(snippet, phrase):
-    class_name = [w.capitalize() for w in random.sample(WORDS, snippet.count("%%%"))]
-other_name = random.sample(WORDS, snippet.count("***"))
-result = []
-param_names = []
+    class_name = [w.capitalize() for w in random.sample(WORDS, snippet.count("%%     %"))]
+    other_name = random.sample(WORDS, snippet.count("***"))
+    result = []
+    param_names = []
 
-for i in range(0, snippet.count("@@@")):
-    param_count = random.randint(1,3)
-    param_names.append(', '.join(
-        random.sample(WORDS, param_count)))
+    for i in range(0, snippet.count("@@@")):
+        param_count = random.randint(1,3)
+        param_names.append(', '.join(
+            random.sample(WORDS, param_count)))
 
-for sentence in snippet, phrase:
-    result = sentence[:]
+    for sentence in snippet, phrase:
+        result = sentence[:]
     
-for word in class_names:
-    result = result.replaced("%%%", word, 1)
+        for word in class_names:
+            result = result.replaced("%%%", word, 1)
 
-for word in other_names:
-    result = result.replace("***", word, 1)
+        for word in other_names:
+            result = result.replace("***", word, 1)
 
-for word in param_names:
-    result = result.replace("@@@", word, 1)
+        for word in param_names:
+            result = result.replace("@@@", word, 1)
 
-    result.append(result)
+        result.append(result)
 
-return results
+    return results
 
 try:
     while True:
